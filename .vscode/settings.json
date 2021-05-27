@@ -1,0 +1,13 @@
+{
+    "editor.formatOnSave": true,
+    "[javascript]": {
+      "editor.tabSize": 2,
+      "editor.formatOnSave": true,
+      "editor.insertSpaces": true,
+      "editor.detectIndentation":false
+    },
+    "editor.codeActionsOnSave": {
+      // For ESLint
+      "source.fixAll.eslint": true
+    },
+  }
