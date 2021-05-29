@@ -1,18 +1,21 @@
 module.exports = {
   root: true,
-  parser: 'babel-eslint',
-  plugins: ['react-hooks'],
+  parser: '@typescript-eslint/parser',
+  plugins: ['@typescript-eslint', 'react-hooks'],
   parserOptions: {
     ecmaVersion: 2019,
     sourceType: 'module',
     ecmaFeatures: {
       jsx: true,
     },
+    project: './tsconfig.json',
+    tsconfigRootDir: __dirname,
   },
   extends: [
-    'airbnb',
+    'airbnb-typescript',
     'plugin:react/recommended',
     'plugin:jsx-a11y/recommended',
+    'plugin:@typescript-eslint/recommended',
   ],
   env: {
     node: true,
@@ -36,6 +39,6 @@ module.exports = {
     'space-before-function-paren': 0,
     'eol-last': 0,
     'linebreak-style': 0,
-    'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
+    '@typescript-eslint/explicit-module-boundary-types': 0,
   },
 };

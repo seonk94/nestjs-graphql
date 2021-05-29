@@ -12,6 +12,6 @@ const Root = () => (
         <Route path="/app" component={App} />
       </Switch>
     </Suspense>
-  </BrowserRouter>
+  </BrowserRouter> 
 );
 export default Root;
