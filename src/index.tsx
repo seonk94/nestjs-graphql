@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { GlobalStyle } from './assets/style/globalStyles';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import Root from './router';
@@ -7,6 +8,7 @@ import Root from './router';
 ReactDOM.render(
   <React.StrictMode>
     <Root />
+    <GlobalStyle />
   </React.StrictMode>,
   document.getElementById('root'),
 );
