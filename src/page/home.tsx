@@ -1,5 +1,8 @@
-import React from 'react';
+import firebase from 'firebase';
+import * as firebaseui from 'firebaseui';
+import React, { useEffect } from 'react';
 import { drift } from 'src/assets/style/animation';
+import { GoogleProvider } from 'src/firebase';
 import styled from 'styled-components';
 
 interface WavePropType {
@@ -26,6 +29,7 @@ const WaveContainer = styled.div`
   background: lighten(#f0f4c3, 10%);
   position: fixed;
   overflow: hidden;
+  z-index: -1;
   transform: translate3d(0, 0, 0);
 `;
 
@@ -44,22 +48,44 @@ const Wave = styled.div<WavePropType>`
   animation: ${drift} ${(props) => props.time} infinite linear;
 `;
 
-const Title = styled.p`
+const Title = styled.h1`
   text-align: center;
   color: cyan;
   font-size: 5em;
   text-transform: uppercase;
   letter-spacing: .3em;
 `;
+const SubTitle = styled.h3`
+  text-align: center;
+  letter-spacing: .15em;
+  color: white;
+`;
 
-const Home = () => (
-  <Container>
-    <Title>See Mind</Title>
-    <WaveContainer>
-      <Wave time="3000ms" opacity=".4" color="pink" />
-      <Wave time="5000ms" opacity=".1" color="coral" />
-      <Wave time="7000ms" opacity=".4" color="aqua" />
-    </WaveContainer>
-  </Container>
-);
+const Home = () => {
+  useEffect(() => {
+    let ui = firebaseui.auth.AuthUI.getInstance();
+    if (!ui) {
+      ui = new firebaseui.auth.AuthUI(firebase.auth());
+    }
+    ui.start('#firebaseui-auth-container', {
+      signInSuccessUrl: '/',
+      signInOptions: [
+        GoogleProvider,
+      ],
+    });
+  }, []);
+  
+  return (
+    <Container>
+      <Title>See Mind</Title>
+      <SubTitle>Start with</SubTitle>
+      <div id="firebaseui-auth-container" />
+      <WaveContainer>
+        <Wave time="3000ms" opacity=".4" color="pink" />
+        <Wave time="5000ms" opacity=".1" color="coral" />
+        <Wave time="7000ms" opacity=".4" color="aqua" />
+      </WaveContainer>
+    </Container>
+  );
+};
 export default Home;

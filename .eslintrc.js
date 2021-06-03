@@ -41,5 +41,6 @@ module.exports = {
     'linebreak-style': 0,
     '@typescript-eslint/explicit-module-boundary-types': 0,
     'import/prefer-default-export': 0,
+    'import/no-extraneous-dependencies': 0,
   },
 };
