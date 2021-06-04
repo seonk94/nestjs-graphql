@@ -35,3 +35,25 @@ export const drift = keyframes`
   from { transform: rotate(0deg); }
   from { transform: rotate(360deg); }
 `;
+export const tinDownOut = keyframes`
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1, 1) translateY(900%);
+  }
+
+`;
+export const tinUpOut = keyframes`
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1, 1) translateY(-900%);
+  }
+
+`;

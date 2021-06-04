@@ -4,6 +4,7 @@ import { GlobalStyle } from './assets/style/globalStyles';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import Root from './router';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 ReactDOM.render(
   <React.StrictMode>

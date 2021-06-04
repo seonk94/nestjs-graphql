@@ -25,7 +25,7 @@ const WaveContainer = styled.div`
   flex-grow: 1;
   width: 100vw;
   height: 100vh;
-  box-shadow: 0 2px 30px rgba(black, .2);
+  box-shadow: 0 2px 30px rgba(black, 0.2);
   background: lighten(#f0f4c3, 10%);
   position: fixed;
   overflow: hidden;
@@ -53,11 +53,11 @@ const Title = styled.h1`
   color: cyan;
   font-size: 5em;
   text-transform: uppercase;
-  letter-spacing: .3em;
+  letter-spacing: 0.3em;
 `;
 const SubTitle = styled.h3`
   text-align: center;
-  letter-spacing: .15em;
+  letter-spacing: 0.15em;
   color: white;
 `;
 
@@ -69,12 +69,10 @@ const Home = () => {
     }
     ui.start('#firebaseui-auth-container', {
       signInSuccessUrl: '/',
-      signInOptions: [
-        GoogleProvider,
-      ],
+      signInOptions: [GoogleProvider],
     });
   }, []);
-  
+
   return (
     <Container>
       <Title>See Mind</Title>
