@@ -11,7 +11,7 @@ const Root = () => (
       <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/channel" component={Channel} />
-        <Route path="/room" component={Room} />
+        <Route path="/room/:id" component={Room} />
       </Switch>
     </Suspense>
   </BrowserRouter>
