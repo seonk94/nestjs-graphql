@@ -35,6 +35,7 @@ export const drift = keyframes`
   from { transform: rotate(0deg); }
   from { transform: rotate(360deg); }
 `;
+
 export const tinDownOut = keyframes`
   0% {
     opacity: 1;
@@ -56,4 +57,28 @@ export const tinUpOut = keyframes`
     transform: scale(1, 1) translateY(-900%);
   }
 
+`;
+
+export const fly = keyframes`
+  0% {
+    opacity: 1;
+    bottom: 0px;
+  }
+
+  10%,
+  40%,
+  70% {
+    transform: translateX(-3px);
+  }
+
+  25%,
+  55%,
+  95% {
+    transform: translateX(3px);
+  }
+
+  100% {
+    opacity: 0;
+    bottom: 4rem;
+  }
 `;
