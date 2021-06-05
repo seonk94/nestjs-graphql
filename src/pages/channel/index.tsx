@@ -1,6 +1,10 @@
+import { useQuery } from '@apollo/client';
 import React from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
+import {
+  Container, Row, Col, 
+} from 'react-bootstrap';
 import RoomCard from 'src/components/atoms/RoomCard';
+import { GET_ROOMS, GetRoomsResponse } from 'src/graphql/room';
 import styled from 'styled-components';
 
 const Title = styled.h1`
@@ -10,13 +14,15 @@ const Title = styled.h1`
   letter-spacing: 0.1em;
 `;
 function Channel() {
-  const arr = Array.from({ length: 20 }, (_, i) => i);
+  const { data } = useQuery<GetRoomsResponse>(GET_ROOMS);
+  
+
   return (
     <Container>
       <Title>Select Room</Title>
       <Row>
-        {arr.map((i) => (
-          <Col key={i} xs={6} md={4}>
+        {data?.rooms.map((room) => (
+          <Col key={room._id} xs={6} md={4}>
             <RoomCard />
           </Col>
         ))}

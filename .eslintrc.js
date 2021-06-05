@@ -42,5 +42,6 @@ module.exports = {
     '@typescript-eslint/explicit-module-boundary-types': 0,
     'import/prefer-default-export': 0,
     'import/no-extraneous-dependencies': 0,
+    'no-underscore-dangle': 0
   },
 };
