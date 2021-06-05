@@ -70,6 +70,7 @@ const Home = () => {
     ui.start('#firebaseui-auth-container', {
       signInSuccessUrl: '/channel',
       signInOptions: [GoogleProvider],
+      signInFlow: 'popup',
     });
   }, []);
 
