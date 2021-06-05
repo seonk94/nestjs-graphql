@@ -1,19 +1,49 @@
-import React, { lazy, Suspense } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import React, { lazy, Suspense, useContext } from 'react';
+import {
+  BrowserRouter, Route, Switch, Redirect, 
+} from 'react-router-dom';
+import Loading from 'src/components/atoms/Loading';
+import { firebaseAuth } from 'src/provider/AuthProvider';
 
 const Home = lazy(() => import('../pages/home'));
 const Channel = lazy(() => import('../pages/channel'));
 const Room = lazy(() => import('../pages/room'));
 
-const Root = () => (
-  <BrowserRouter>
-    <Suspense fallback={<div>Loading...</div>}>
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route path="/channel" component={Channel} />
-        <Route path="/room/:id" component={Room} />
-      </Switch>
-    </Suspense>
-  </BrowserRouter>
-);
+
+function AuthRoute({ user, component, path } : {
+  user: firebase.default.User | null,
+  component: React.LazyExoticComponent<() => JSX.Element>,
+  path: string,
+}) {
+  return (
+    user 
+      ? (
+        <Route
+          path={path}
+          component={component}
+        />
+      )
+      : <Redirect to={{ pathname: '/' }} />
+  );
+}
+const Root = () => {
+  const { user, loadingAuthState } = useContext(firebaseAuth);
+  
+  return (
+    <BrowserRouter>
+      {
+        loadingAuthState ? <Loading position="fixed" />
+          : (
+            <Suspense fallback={<Loading position="fixed" />}>
+              <Switch>
+                <Route exact path="/" component={Home} />
+                <AuthRoute user={user} path="/channel" component={Channel} />
+                <AuthRoute user={user} path="/room/:id" component={Room} />
+              </Switch>
+            </Suspense>
+          )
+      }
+    </BrowserRouter>
+  );
+};
 export default Root;

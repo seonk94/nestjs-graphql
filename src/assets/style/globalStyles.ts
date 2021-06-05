@@ -5,6 +5,7 @@ export const GlobalStyle = createGlobalStyle`
     body {
         margin: 0px;
         background-color: #2F3537;
+        min-height: 100vh;
     }
     .fly-emoji {
         opacity: 0;

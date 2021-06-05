@@ -68,7 +68,7 @@ const Home = () => {
       ui = new firebaseui.auth.AuthUI(firebase.auth());
     }
     ui.start('#firebaseui-auth-container', {
-      signInSuccessUrl: '/',
+      signInSuccessUrl: '/channel',
       signInOptions: [GoogleProvider],
     });
   }, []);

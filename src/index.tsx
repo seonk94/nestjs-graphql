@@ -6,10 +6,10 @@ import {
   ApolloProvider,
 } from '@apollo/client';
 import { GlobalStyle } from './assets/style/globalStyles';
-import './index.css';
 import reportWebVitals from './reportWebVitals';
 import Root from './router';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import AuthProvider from './provider/AuthProvider';
 
 
 const client = new ApolloClient({
@@ -19,10 +19,12 @@ const client = new ApolloClient({
 
 ReactDOM.render(
   <React.StrictMode>
-    <ApolloProvider client={client}>
-      <Root />
-      <GlobalStyle />
-    </ApolloProvider>
+    <AuthProvider>
+      <ApolloProvider client={client}>
+        <Root />
+        <GlobalStyle />
+      </ApolloProvider>
+    </AuthProvider>
   </React.StrictMode>,
   document.getElementById('root'),
 );

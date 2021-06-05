@@ -3,9 +3,6 @@ import MindCard from 'src/components/atoms/MindCard';
 import EmojiGroup from 'src/components/molecules/EmojiGroup';
 import styled from 'styled-components';
 
-interface Props {
-  count: number;
-}
 const EmojiGroupContainer = styled.div`
     position: fixed;
     bottom: 0;
@@ -14,11 +11,11 @@ const EmojiGroupContainer = styled.div`
     justify-content: center;
 `;
 
-function Room({ count = 1 }: Props) {
+function Room() {
   const cardArray = Array.from({ length: 20 }, (_, i) => i).map((i) => (
     <MindCard key={i} type="stop" index={i} />
   ));
-  const animationCardArray = Array.from({ length: count }, (_, i) => i).map(
+  const animationCardArray = Array.from({ length: 2 }, (_, i) => i).map(
     (i) => (
       <>
         <MindCard key={i} index={i} type="down" />
