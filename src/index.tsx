@@ -4,16 +4,42 @@ import {
   ApolloClient,
   InMemoryCache,
   ApolloProvider,
+  HttpLink,
+  split,
 } from '@apollo/client';
+import { getMainDefinition } from '@apollo/client/utilities';
+import { WebSocketLink } from '@apollo/client/link/ws';
 import { GlobalStyle } from './assets/style/globalStyles';
 import reportWebVitals from './reportWebVitals';
 import Root from './router';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import AuthProvider from './provider/AuthProvider';
 
+const wsLink = new WebSocketLink({
+  uri: 'ws://localhost:4002/subscriptions',
+  options: {
+    reconnect: true,
+  },
+});
+
+const httpLink = new HttpLink({
+  uri: 'http://localhost:4002/graphql',
+});
+
+const splitLink = split(
+  ({ query }) => {
+    const definition = getMainDefinition(query);
+    return (
+      definition.kind === 'OperationDefinition' &&
+      definition.operation === 'subscription'
+    );
+  },
+  wsLink,
+  httpLink,
+);
 
 const client = new ApolloClient({
-  uri: 'http://localhost:4000',
+  link: splitLink,
   cache: new InMemoryCache(),
 });
 
